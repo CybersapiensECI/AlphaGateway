@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: event-service
+          uri: https://eventservice-alpha-2026.azurewebsites.net
+          predicates:
+            - Path=/api/events/**
+          filters:
+            - StripPrefix=1
+
+        - id: bienestar-service
+          uri: https://bienestarservice-alpha-2026.azurewebsites.net
+          predicates:
+            - Path=/api/bienestar/**
+          filters:
+            - StripPrefix=1
