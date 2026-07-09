@@ -20,3 +20,17 @@ spring:
             - Path=/api/bienestar/**
           filters:
             - StripPrefix=1
+
+        - id: gamification-service
+          uri: https://gamification-service.icysea-59b45732.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/gamification/**
+          filters:
+            - StripPrefix=1
+
+        - id: estadisticas-service
+          uri: https://estadisticas-eci.icysea-59b45732.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/estadisticas/**
+          filters:
+            - StripPrefix=1
