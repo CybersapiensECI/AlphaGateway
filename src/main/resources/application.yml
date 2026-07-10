@@ -34,3 +34,23 @@ spring:
             - Path=/api/estadisticas/**
           filters:
             - StripPrefix=1
+
+        - id: profile-service
+          uri: https://alphaeci-profile-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/v1/users/**
+
+        - id: matching-service-matches
+          uri: https://alphaeci-matching-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/v1/matches/**
+
+        - id: matching-service-categories
+          uri: https://alphaeci-matching-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/v1/categories/**
+
+        - id: identity-service
+          uri: https://alphaeci-identity-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/v1/auth/**
