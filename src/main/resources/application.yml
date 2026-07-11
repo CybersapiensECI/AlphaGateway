@@ -21,19 +21,19 @@ spring:
           filters:
             - StripPrefix=1
 
+# GamificationService sirve /api/v1/gamification/** (ver
+        # GamificationController @RequestMapping): sin StripPrefix, el
+        # path se reenvía tal cual.
         - id: gamification-service
           uri: https://gamification-service.icysea-59b45732.eastus.azurecontainerapps.io
           predicates:
-            - Path=/api/gamification/**
-          filters:
-            - StripPrefix=1
+            - Path=/api/v1/gamification/**
 
+        # Estadisticas_Eci (BFF) sirve /api/v1/metrics/** (MetricsController).
         - id: estadisticas-service
           uri: https://estadisticas-eci.icysea-59b45732.eastus.azurecontainerapps.io
           predicates:
-            - Path=/api/estadisticas/**
-          filters:
-            - StripPrefix=1
+            - Path=/api/v1/metrics/**
 
         - id: profile-service
           uri: https://alphaeci-profile-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
@@ -55,10 +55,13 @@ spring:
           predicates:
             - Path=/api/v1/auth/**
 
+# Parches-Service sirve /api/parches/** (no /api/v1/...), y el mismo
+        # servicio expone invitaciones (/api/invitations/**) y
+        # comentarios/reacciones de posts (/api/posts/**).
         - id: parches-service
           uri: https://alpha-eci-parches-prod.azurewebsites.net/
           predicates:
-            - Path=/api/v1/parches/**
+            - Path=/api/parches/**,/api/invitations/**,/api/posts/**
 
         - id: notification-service
           uri: https://notification-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
@@ -69,6 +72,13 @@ spring:
           uri: https://chat-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
           predicates:
             - Path=/api/chat/**
+
+        # WebSocket STOMP/SockJS del chat en tiempo real (mismo patrón
+        # que geo-service-websocket).
+        - id: chat-service-websocket
+          uri: wss://chat-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/ws-chat/**
 
         - id: geo-service
           uri: https://alpha-geoservice.whiteflower-ef3c3153.eastus2.azurecontainerapps.io
