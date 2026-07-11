@@ -58,6 +58,14 @@ spring:
         - id: parches-service
           uri: https://alpha-eci-parches-prod.azurewebsites.net/
           predicates:
-            - Path=/api/v1/parches/**            
+            - Path=/api/v1/parches/**
 
-            
+        - id: notification-service
+          uri: https://notification-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/notifications/**
+
+        - id: chat-service
+          uri: https://chat-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
+          predicates:
+            - Path=/api/chat/**
