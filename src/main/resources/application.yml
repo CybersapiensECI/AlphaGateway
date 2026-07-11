@@ -54,3 +54,10 @@ spring:
           uri: https://alphaeci-identity-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
           predicates:
             - Path=/api/v1/auth/**
+
+        - id: parches-service
+          uri: https://alpha-eci-parches-prod.azurewebsites.net/
+          predicates:
+            - Path=/api/v1/parches/**            
+
+            
