@@ -69,3 +69,13 @@ spring:
           uri: https://chat-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
           predicates:
             - Path=/api/chat/**
+
+        - id: geo-service
+          uri: https://alpha-geoservice.whiteflower-ef3c3153.eastus2.azurecontainerapps.io
+          predicates:
+            - Path=/api/zone/**
+
+        - id: geo-service-websocket
+          uri: wss://alpha-geoservice.whiteflower-ef3c3153.eastus2.azurecontainerapps.io
+          predicates:
+            - Path=/ws-location/**
