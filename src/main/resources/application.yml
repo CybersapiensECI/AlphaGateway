@@ -64,19 +64,19 @@ spring:
             - Path=/api/parches/**,/api/invitations/**,/api/posts/**
 
         - id: notification-service
-          uri: https://notification-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
+          uri: https://notification-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/notifications/**
 
         - id: chat-service
-          uri: https://chat-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
+          uri: https://chat-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/chat/**
 
         # WebSocket STOMP/SockJS del chat en tiempo real (mismo patrón
         # que geo-service-websocket).
         - id: chat-service-websocket
-          uri: wss://chat-service-prod.gentlebeach-15ecf803.eastus.azurecontainerapps.io
+          uri: wss://chat-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
           predicates:
             - Path=/ws-chat/**
 
