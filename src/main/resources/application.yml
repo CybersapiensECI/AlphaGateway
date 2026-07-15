@@ -36,22 +36,22 @@ spring:
             - Path=/api/v1/metrics/**
 
         - id: profile-service
-          uri: https://alphaeci-profile-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          uri: https://alphaeci-profile-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/v1/users/**
 
         - id: matching-service-matches
-          uri: https://alphaeci-matching-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          uri: https://alphaeci-matching-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/v1/matches/**
 
         - id: matching-service-categories
-          uri: https://alphaeci-matching-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          uri: https://alphaeci-matching-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/v1/categories/**
 
         - id: identity-service
-          uri: https://alphaeci-identity-service-prod.icycoast-fc5305af.eastus.azurecontainerapps.io
+          uri: https://alphaeci-identity-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/v1/auth/**
 
