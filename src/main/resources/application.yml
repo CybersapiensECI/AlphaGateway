@@ -59,7 +59,7 @@ spring:
         # servicio expone invitaciones (/api/invitations/**) y
         # comentarios/reacciones de posts (/api/posts/**).
         - id: parches-service
-          uri: https://alpha-eci-parches-prod.azurewebsites.net/
+          uri: https://parches-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/parches/**,/api/invitations/**,/api/posts/**
 
