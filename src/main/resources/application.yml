@@ -81,11 +81,11 @@ spring:
             - Path=/ws-chat/**
 
         - id: geo-service
-          uri: https://alpha-geoservice.whiteflower-ef3c3153.eastus2.azurecontainerapps.io
+          uri: https://alpha-geoservice.wonderfulflower-e81066fc.eastus2.azurecontainerapps.io
           predicates:
             - Path=/api/zone/**
 
         - id: geo-service-websocket
-          uri: wss://alpha-geoservice.whiteflower-ef3c3153.eastus2.azurecontainerapps.io
+          uri: wss://alpha-geoservice.wonderfulflower-e81066fc.eastus2.azurecontainerapps.io
           predicates:
             - Path=/ws-location/**
