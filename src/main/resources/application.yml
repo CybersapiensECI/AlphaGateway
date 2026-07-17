@@ -6,86 +6,154 @@ spring:
     name: apigateway
   cloud:
     gateway:
-      routes:
-        - id: event-service
-          uri: https://eventservice-alpha-2026.azurewebsites.net
-          predicates:
-            - Path=/api/events/**
-          filters:
-            - StripPrefix=1
+      server:
+        webflux:
+          routes:
+            - id: event-service
+              uri: https://eventservice-alpha-2026.azurewebsites.net
+              predicates:
+                - Path=/api/events/**
+              filters:
+                - StripPrefix=1
 
-        - id: bienestar-service
-          uri: https://bienestarservice-alpha-2026.azurewebsites.net
-          predicates:
-            - Path=/api/bienestar/**
-          filters:
-            - StripPrefix=1
+            - id: bienestar-service
+              uri: https://bienestarservice-alpha-2026.azurewebsites.net
+              predicates:
+                - Path=/api/bienestar/**
+              filters:
+                - StripPrefix=1
 
-# GamificationService sirve /api/v1/gamification/** (ver
-        # GamificationController @RequestMapping): sin StripPrefix, el
-        # path se reenvía tal cual.
-        - id: gamification-service
-          uri: https://gamification-service.icysea-59b45732.eastus.azurecontainerapps.io
-          predicates:
-            - Path=/api/v1/gamification/**
+            # GamificationService sirve /api/v1/gamification/** (ver
+            # GamificationController @RequestMapping): sin StripPrefix, el
+            # path se reenvía tal cual.
+            - id: gamification-service
+              uri: https://gamification-service.icysea-59b45732.eastus.azurecontainerapps.io
+              predicates:
+                - Path=/api/v1/gamification/**
 
-        # Estadisticas_Eci (BFF) sirve /api/v1/metrics/** (MetricsController).
-        - id: estadisticas-service
-          uri: https://estadisticas-eci.icysea-59b45732.eastus.azurecontainerapps.io
-          predicates:
-            - Path=/api/v1/metrics/**
+            # Estadisticas_Eci (BFF) sirve /api/v1/metrics/** (MetricsController).
+            - id: estadisticas-service
+              uri: https://estadisticas-eci.icysea-59b45732.eastus.azurecontainerapps.io
+              predicates:
+                - Path=/api/v1/metrics/**
 
-        - id: profile-service
-          uri: https://alphaeci-profile-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/v1/users/**
+            - id: profile-service
+              uri: https://alphaeci-profile-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/v1/users/**
 
-        - id: matching-service-matches
-          uri: https://alphaeci-matching-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/v1/matches/**
+            - id: matching-service-matches
+              uri: https://alphaeci-matching-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/v1/matches/**
 
-        - id: matching-service-categories
-          uri: https://alphaeci-matching-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/v1/categories/**
+            - id: matching-service-categories
+              uri: https://alphaeci-matching-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/v1/categories/**
 
-        - id: identity-service
-          uri: https://alphaeci-identity-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/v1/auth/**
+            - id: identity-service
+              uri: https://alphaeci-identity-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/v1/auth/**
 
-# Parches-Service sirve /api/parches/** (no /api/v1/...), y el mismo
-        # servicio expone invitaciones (/api/invitations/**) y
-        # comentarios/reacciones de posts (/api/posts/**).
-        - id: parches-service
-          uri: https://parches-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/parches/**,/api/invitations/**,/api/posts/**
+            # Parches-Service sirve /api/parches/** (no /api/v1/...), y el mismo
+            # servicio expone invitaciones (/api/invitations/**) y
+            # comentarios/reacciones de posts (/api/posts/**).
+            - id: parches-service
+              uri: https://parches-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/parches/**,/api/invitations/**,/api/posts/**
 
-        - id: notification-service
-          uri: https://notification-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/notifications/**
+            - id: notification-service
+              uri: https://notification-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/notifications/**
 
-        - id: chat-service
-          uri: https://chat-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/chat/**
+            - id: chat-service
+              uri: https://chat-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/chat/**
 
-        # WebSocket STOMP/SockJS del chat en tiempo real (mismo patrón
-        # que geo-service-websocket).
-        - id: chat-service-websocket
-          uri: wss://chat-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/ws-chat/**
+            # WebSocket STOMP/SockJS del chat en tiempo real (mismo patrón
+            # que geo-service-websocket).
+            - id: chat-service-websocket
+              uri: wss://chat-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/ws-chat/**
 
-        - id: geo-service
-          uri: https://alpha-geoservice.whiteflower-ef3c3153.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/api/zone/**
+            - id: geo-service
+              uri: https://alpha-geoservice.wonderfulflower-e81066fc.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/api/zone/**
 
-        - id: geo-service-websocket
-          uri: wss://alpha-geoservice.whiteflower-ef3c3153.eastus2.azurecontainerapps.io
-          predicates:
-            - Path=/ws-location/**
+            - id: geo-service-websocket
+              uri: wss://alpha-geoservice.wonderfulflower-e81066fc.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/ws-location/**
+
+            # --- Documentación Swagger/OpenAPI por servicio ---
+            # Cada backend springdoc expone /v3/api-docs y /swagger-ui.html en
+            # su raíz (sin StripPrefix en sus rutas normales, el propio backend
+            # ya monta ahí). Se usa /docs/<servicio>/** + StripPrefix=2 para
+            # reenviar tal cual, ej: /docs/events/swagger-ui/index.html ->
+            # /swagger-ui/index.html en eventservice-alpha-2026.
+            - id: event-service-docs
+              uri: https://eventservice-alpha-2026.azurewebsites.net
+              predicates:
+                - Path=/docs/events/**
+              filters:
+                - StripPrefix=2
+
+            - id: bienestar-service-docs
+              uri: https://bienestarservice-alpha-2026.azurewebsites.net
+              predicates:
+                - Path=/docs/bienestar/**
+              filters:
+                - StripPrefix=2
+
+            - id: identity-service-docs
+              uri: https://alphaeci-identity-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/docs/identity/**
+              filters:
+                - StripPrefix=2
+
+            - id: matching-service-docs
+              uri: https://alphaeci-matching-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/docs/matching/**
+              filters:
+                - StripPrefix=2
+
+            - id: parches-service-docs
+              uri: https://parches-service-prod.lemonwater-bf7b63a9.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/docs/parches/**
+              filters:
+                - StripPrefix=2
+
+            - id: geo-service-docs
+              uri: https://alpha-geoservice.wonderfulflower-e81066fc.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/docs/geo/**
+              filters:
+                - StripPrefix=2
+
+            # profile-service es NestJS: SwaggerModule.setup('api', ...) monta
+            # la UI en /api (con sus assets estáticos bajo /api/*, ej.
+            # /api/swagger-ui.css) y el spec JSON aparte en /api-json.
+            - id: profile-service-docs-ui
+              uri: https://alphaeci-profile-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/docs/profile/**
+              filters:
+                - RewritePath=/docs/profile(?<segment>/?.*), /api$\{segment}
+
+            # Path sin "/" tras "profile" para no chocar con /docs/profile/**.
+            - id: profile-service-docs-json
+              uri: https://alphaeci-profile-service-prod.happygrass-8c498810.eastus2.azurecontainerapps.io
+              predicates:
+                - Path=/docs/profile-json
+              filters:
+                - RewritePath=/docs/profile-json, /api-json
