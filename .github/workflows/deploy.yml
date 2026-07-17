@@ -46,9 +46,6 @@ jobs:
             --resource-group gr-alphaeci-prod \
             --environment gr-alphaeci-prod \
             --image ${{ env.IMAGE_NAME }}:${{ github.sha }} \
-            --registry-server ghcr.io \
-            --registry-username ${{ github.actor }} \
-            --registry-password ${{ secrets.GITHUB_TOKEN }} \
             --ingress external \
             --target-port 8080
 
