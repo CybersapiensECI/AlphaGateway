@@ -8,6 +8,26 @@ spring:
     gateway:
       server:
         webflux:
+          # Sin esto, el front en modo web (flutter run -d chrome / build web)
+          # queda bloqueado por el navegador: la respuesta del gateway no
+          # traía Access-Control-Allow-Origin, así que el preflight OPTIONS
+          # pasaba (200) pero el navegador rechazaba la petición real y Dio
+          # lo reportaba igual que un timeout ("Sin conexión"). Los clientes
+          # móviles (Android/iOS) no aplican CORS y no dependían de esto.
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOriginPatterns: "*"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - PATCH
+                  - DELETE
+                  - OPTIONS
+                allowedHeaders: "*"
+                allowCredentials: false
+                maxAge: 3600
           routes:
             - id: event-service
               uri: https://eventservice-alpha-2026.azurewebsites.net
