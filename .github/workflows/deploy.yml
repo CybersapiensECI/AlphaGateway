@@ -53,9 +53,7 @@ jobs:
             --name api-gateway \
             --resource-group gr-alphaeci-prod \
             --min-replicas 0 \
-            --max-replicas 1 \
-            --set-env-vars \
-              "APP_JWT_SECRET=${{ secrets.JWT_SECRET }}"
+            --max-replicas 1
 
       - name: Show app URL
         run: |
