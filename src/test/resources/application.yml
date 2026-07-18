@@ -1,0 +1,3 @@
+app:
+  jwt:
+    secret: test-secret-only-for-context-load-not-a-real-credential

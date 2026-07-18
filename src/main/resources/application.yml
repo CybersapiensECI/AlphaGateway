@@ -1,6 +1,14 @@
 server:
   port: 8080
 
+# Mismo secreto HMAC con el que identity-service firma los JWT (ver
+# JwtService.java ahí, property app.jwt.secret / env var APP_JWT_SECRET).
+# Sin variable de entorno, sin default: el gateway no debe arrancar con
+# un secreto de relleno — eso permitiría forjar tokens válidos.
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET}
+
 spring:
   application:
     name: apigateway
